@@ -3,7 +3,7 @@
 * Plugin Name: WPRes - nofollow link
 * Plugin URI: https://wordpress.org/plugins/wpres-nofollow-link/
 * Description: Adds a checkbox in the insert link popup box for including rel="nofollow" in links
-* Version: 0.9.0
+* Version: 0.9.1
 * Requires at least: 4.2 
 * Tested up to: 4.2.1 
 * Author: WPRes.net
@@ -12,10 +12,7 @@
 * Domain Path: /languages 
 * License: GPLv2 or later
 */ 
-?>
 
-<?php
- 
 if (!defined('ABSPATH')) {
     exit;
 }

@@ -25,6 +25,9 @@ No FAQ yet. Just activate the plugin and it works...
 
 == Changelog ==
 
+= 0.9.1 =
+* Removed a Space in Source to avoid a error in activating the plugin
+
 = 0.9.0 =
 * Added i18n
 * Added L10n German and english
