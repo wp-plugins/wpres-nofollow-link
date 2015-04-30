@@ -1,6 +1,6 @@
-=== WPRes - nofollow link - en ===
+=== WPRes - nofollow link ===
 Contributors: wpres.net
-Plugin URI: https://wordpress.org/plugins/wpres-nofollow-link-en/
+Plugin URI: https://wordpress.org/plugins/wpres-nofollow-link/
 Stable tag: trunk
 Tags: nofollow,link,links,meta,insert,rel nofollow,seo,checkbox,popup
 Requires at least: 4.2
