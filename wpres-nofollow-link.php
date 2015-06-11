@@ -1,6 +1,6 @@
 <?php
 /* 
- * Plugin Name: WPRes - nofollow link
+ * Plugin Name: WPRes - NoFollow and Title for links
  * Plugin URI: https://wordpress.org/plugins/wpres-nofollow-link/
  * Description: This plugin restores the `Title` field (that was removed from WordPress 4.2) in the insert link popup box and also adds a new `Add rel="nofollow" to link` checkbox to it. 
  * Version: 1.5.0
