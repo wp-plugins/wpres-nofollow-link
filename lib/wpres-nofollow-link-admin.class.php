@@ -26,6 +26,7 @@ class WPResNoFollowLinkAdmin {
             'save' => __('Add Link'),
             'noTitle' => __('(no title)'),
             'noMatchesFound' => __('No results found.'),
+     	    'labelTitle' => __( 'Title' ),
             'noFollow' => __('add <code>rel="nofollow"</code> to link', 'wpres-nofollow-link')
         ));
     }

@@ -22,8 +22,12 @@ var wpLink;
 		init: function() {
                         // change WPRes begin
                         // Einfügen der Checkbox
-			var appendHtml = '<br><label><span>&nbsp;</span><input type="checkbox" id="wpres-add-nofollow">' + wpLinkL10n.noFollow + '</label>';
-			$('#wp-link .link-target').append(appendHtml); 
+			$('#wp-link .link-target').append('<br><label><span>&nbsp;</span><input type="checkbox" id="wpres-add-nofollow">' + wpLinkL10n.noFollow + '</label>'); 
+
+                        // Einfügen des Title-Feldes
+			$( '.wp-link-text-field' ).before( '<div class="link-title-field"><label><span>' + wpLinkL10n.labelTitle + '</span><input id="wp-link-title" type="text" name="linktitle" /></label></div>' );
+			// Alles unter dem Feld etwas nach unten schieben
+			$( '<style type="text/css"> .has-text-field #wp-link .query-results { top: 256px !important; } #wp-link-wrap.search-panel-visible {height: 549px !important;}</style>' ).appendTo( 'head' );
                         // change WPRes end
 
 			inputs.wrap = $('#wp-link-wrap');
@@ -38,8 +42,10 @@ var wpLink;
 			inputs.nonce = $( '#_ajax_linking_nonce' );
 			inputs.openInNewTab = $( '#wp-link-target' );
                         // change WPRes begin
-                        // Die Id des HTML-Elements
+                        // Die Id des NoFollow-Elements
 			inputs.wpresNofollow = $( '#wpres-add-nofollow' );
+                        // Die Id des Title-Elements
+ 			inputs.title = $( '#wp-link-title' );
                         // change WPRes end
                         
 			inputs.search = $( '#wp-link-search' );
@@ -240,6 +246,9 @@ var wpLink;
                                     } else {
 					inputs.wpresNofollow.prop('checked', false);
                                     }
+                                // Die Title-Eingabe merken        
+                                inputs.title.val( editor.dom.getAttrib( linkNode, 'title' ) );
+                                    
                                 // change WPRes end
                                     
 				inputs.submit.val( wpLinkL10n.update );
@@ -284,7 +293,10 @@ var wpLink;
 				href: $.trim( inputs.url.val() ),
 				target: inputs.openInNewTab.prop( 'checked' ) ? '_blank' : '',
                                 // change WPRes begin
-				rel: inputs.wpresNofollow.prop('checked') ? 'nofollow' : ''
+                                // Der Zustand der NoFollow Checkbox
+				rel: inputs.wpresNofollow.prop('checked') ? 'nofollow' : '',
+                                // Der Inhalt des Title
+        			title: $.trim( inputs.title.val() )                               
                                 // change WPRes end
 			};
 		},
@@ -315,12 +327,18 @@ var wpLink;
 
 			// Build HTML
 			html = '<a href="' + attrs.href + '"';
-
+    
 			if ( attrs.target ) {
 				html += ' target="' + attrs.target + '"';
 			}
                         
                         // change WPRes begin
+                        // Der Titel
+                        if ( attrs.title ) {
+				title = attrs.title.replace( /</g, '&lt;' ).replace( />/g, '&gt;' ).replace( /"/g, '&quot;' );
+				html += ' title="' + title + '"';
+			}
+                        // Das Rel-Attribut
                         if ( attrs.rel ) { 
 				html += ' rel="' + attrs.rel + '"';
 			}
@@ -407,6 +425,10 @@ var wpLink;
 
 		updateFields: function( e, li ) {
 			inputs.url.val( li.children( '.item-permalink' ).val() );
+                        // change WPRes begin
+			inputs.title.val( li.hasClass( 'no-title' ) ? '' : li.children( '.item-title' ).text() );
+                        // change WPRes end
+                        
 		},
 
 		setDefaultValues: function() {
@@ -429,6 +451,11 @@ var wpLink;
 				// Selection is URL
 				inputs.url.val( selection.replace( /&amp;|&#0?38;/gi, '&' ) );
 			} else {
+                                // change WPRes begin
+                                // Title löschen
+        			inputs.title.val( '' );
+                                // change WPRes end
+                            
 				// Set URL to default.
 				inputs.url.val( '' );
 			}
