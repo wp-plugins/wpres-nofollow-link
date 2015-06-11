@@ -1,7 +1,7 @@
 === WPRes - nofollow link ===
 Contributors: wpres.net
 Plugin URI: https://wordpress.org/plugins/wpres-nofollow-link/
-Stable tag: 1.0.0
+Stable tag: trunk
 Tags: nofollow,link,links,meta,insert,rel nofollow,seo,checkbox,popup,insert,rel nofollow,editor,TinyMCE,title
 Requires at least: 4.2
 Tested up to: 4.2.2
